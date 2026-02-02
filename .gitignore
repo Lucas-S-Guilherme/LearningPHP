@@ -28,3 +28,33 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+
+# --- Dependências ---
+# Nunca suba a pasta vendor. Ela contém o código de terceiros.
+# Você deve usar 'composer install' para baixá-la.
+/vendor/
+
+# --- Configurações de Ambiente ---
+# Contém senhas, chaves de API e configurações locais do banco de dados.
+.env
+.env.local
+.env.*.local
+
+# --- Ferramentas de Desenvolvimento ---
+# Se você usar o PHPUnit para testes
+.phpunit.result.cache
+/step-debug.log
+
+# --- Pastas de IDEs ---
+# Configurações específicas do seu VS Code ou PHPStorm
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --- Sistema Operacional ---
+.DS_Store
+Thumbs.db

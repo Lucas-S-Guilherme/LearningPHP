@@ -184,6 +184,63 @@
 
     <h1>Lambda Functions</h1>
 
+    <p>Também conhecida como função anônima, é uma função que não é nomeada, mas possuíve parâmetros e está atribuída a uma variável</p>
+
+    <!-- Faremos aqui uma função mais genérica, para ser mais flexível e filtrar o que quiser do Array -->
+    <?php 
+        //defini a função que receberá dois parâmetros, um item e uma fução
+      function filter ($items, $fn)
+        {
+            // crirei um array
+            $filteredItems = [];
+
+            //itereção sobre o array passado, a função recebe 
+            foreach ($items as $item) {
+                if ($fn($item)) {
+                    $filteredItems[] = $item;
+                }
+            }
+            //retorna os itens filtrados em forma de array
+            return $filteredItems;
+        };
+            
+            // com a generalização acima, posso criar chamadas filtrando o que eu quiser, com a condição que eu quiser
+            // atribuí o que é filtrado a um array
+            $filteredBooks = filter ($books2, function ($book) {
+                return $book['releaseYear'] <= 2000;
+            });
+
+    ?>
+
+    <ul>
+        <?php foreach ($filteredBooks as $book) : ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>" >
+                    <?= $book['name']; ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+
+
+    <p>Todas as funções acima possuem uma função nativa do PHP chamada array_filter</p>
+    <?php
+    $filteredBooks2 = array_filter ($books2, function ($book) {
+                return $book['releaseYear'] >= 2000;
+            });
+    ?>
+
+    <ul>
+        <?php foreach ($filteredBooks2 as $book) : ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>" >
+                    <?= $book['name']; ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+
+
 </body>
 
 </html>

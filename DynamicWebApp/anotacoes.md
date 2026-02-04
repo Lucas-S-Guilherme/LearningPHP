@@ -11,3 +11,6 @@ Extrair partes parciais para reduzir duplicação e utilizar variáveis para dei
 superglobal são variáveis acessíveis em qualquer lugar em qualquer arquivo do projeto.
 
 Rever e anotar com mais detalhes.
+
+## Make a PHP Router
+

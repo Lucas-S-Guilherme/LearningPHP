@@ -8,9 +8,52 @@ Extrair partes parciais para reduzir duplicação e utilizar variáveis para dei
 
 ## Superglobals and Currente Page Styling
 
-superglobal são variáveis acessíveis em qualquer lugar em qualquer arquivo do projeto.
+Superglobal são variáveis acessíveis em qualquer lugar em qualquer arquivo do projeto.
 
-Rever e anotar com mais detalhes.
+Foi utilizado:
+
+$_SERVER
+    Para capturar a uri solicitada como caminho de uma página
 
 ## Make a PHP Router
+
+    Criamos um roteador que captura a uri da superglobal $_SERVER de uma solicitação get, e separa os dados da query do caminho/página solicitado com parse_url.
+
+
+## Create a MySQL Database
+
+Criado um DB com o TablePlus
+
+## PDO First Steps
+
+Criando instância de classe no PHP
+~~~
+class Person {
+    public $name;
+    public $age;
+
+    public function breathe() {
+        echo $this->name . " is breathing!";
+    }
+}
+
+$person = new Person();
+
+$person->name = 'John Doe';
+$person->age = 25;
+
+$person->breathe();
+~~~
+
+## Extract a PHP Database Class
+
+Convenções para arquivos que são somente uma classe: Inicial Maiúscula.
+
+Criado uma classe Database.php para conexão ao banco de dados, com método para query.
+
+## Environments and Configuration Flexibility
+
+Separar credenciais de configurações de banco de dados, para acessos, ou tokens de APIs, de maneira separada das Classes que iniciam um serviço.
+
+## SQL Injection Vulnerabilities Explained
 

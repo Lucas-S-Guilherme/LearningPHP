@@ -1,2 +1,4 @@
 # LearningPHP
-Aprendendo PHP, Laravel e alguem ORM
+
+Aprendendo PHP com o https://laracasts.com/series/php-for-beginners-2023
+

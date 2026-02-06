@@ -57,3 +57,8 @@ Separar credenciais de configurações de banco de dados, para acessos, ou token
 
 ## SQL Injection Vulnerabilities Explained
 
+Nunca inclua uma string de consulta direto em um código SQL.
+
+Usar declarações preparadas com parâmetros vinculados ?, não deixar em aberto.
+
+Sempre use ? para inserir o parâmetro.

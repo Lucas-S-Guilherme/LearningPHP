@@ -14,13 +14,16 @@ Class Database {
         ]); //PDO é uma classe nativa do php para conexão com dbs
     }
 
-    public function query($query) 
-    {       
+    public function query($query, $params = [])
+    {
+         
+        {       
 
-        $statement = $this->connection->prepare($query);
+            $statement = $this->connection->prepare($query);
 
-        $statement->execute();
+            $statement->execute($params);
 
-        return $statement;
+            return $statement;
+        }
     }
 }

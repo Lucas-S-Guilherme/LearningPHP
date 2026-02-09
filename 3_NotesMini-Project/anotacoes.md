@@ -12,3 +12,7 @@ Busca do dado no Banco de Dados e exibição em uma página simples.
 
 ## Introduction to Authorization
 
+Configurado verificação de permissões do usuário atual, para exibição ou não de páginas ao qual possuí permissão.
+
+## Programming is Rewriting
+

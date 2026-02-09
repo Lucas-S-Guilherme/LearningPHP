@@ -1,12 +1,11 @@
 <?php
 
 $config = require 'config.php';
-
 $db = new Database($config['database']);
 
 $heading = "Notes";
 
-$notes = $db->query('SELECT * FROM notes')->fetchAll();
+$notes = $db->query('SELECT * FROM notes WHERE fk_user_id = 1')->get();
 
 
 

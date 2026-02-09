@@ -1,12 +1,15 @@
 <?php
 
+$config = require 'config.php';
+$db = new Database($config['database']);
+
 $heading = 'Create Note';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Next episode
+   $db->query('INSERT INTO notes(body, fk_user_id) VALUES(:body, :fk_user_id)', [
+    'body' => $_POST['body'],
+    'fk_user_id' => 1
+   ]);
 }
 
-dd($_SERVER);
-
-require 'view/note-create.view.php';
-?>
+require 'views/note-create.view.php';

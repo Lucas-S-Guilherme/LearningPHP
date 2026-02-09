@@ -31,4 +31,20 @@ routes:
 controller:
     note-create.php
 
+## Always Escape Untrusted Input
 
+Utilizado instruções preparadas para evitar o risco de injeção de SQL. 
+Utilizado instrução de entidades especiais html para não permitir injeção de HTML.
+
+Próximo passo será a validação dos formulários.
+
+retorna no note-create.php
+
+Preocupação de segurança, sanitização e filtragem de dados:
+
+Editar notes.view.php:
+
+Processar todos valores e dados enviados pelo usuário.
+
+note.view:
+    também precisa ser sanitizado.

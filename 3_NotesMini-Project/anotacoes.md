@@ -48,3 +48,15 @@ Processar todos valores e dados enviados pelo usuário.
 
 note.view:
     também precisa ser sanitizado.
+
+## Intro to Form Validation
+
+aplicado atributo da tag form required no formulário, mas ele não resolve, é possível contornar com curl pelo terminal. Para resolver é necessário a validação por meio do servidor.
+
+Editado:
+    note-create.php
+    note-create.view.php
+
+
+
+

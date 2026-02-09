@@ -16,3 +16,19 @@ Configurado verificação de permissões do usuário atual, para exibição ou n
 
 ## Programming is Rewriting
 
+## Intro to Forms and Request Methods
+
+Arquivos editados:
+view: 
+    notes
+    note-create.view
+
+Separado rotas para o arquivo routes.php, retirado de router.
+
+routes:
+    /notes/create
+
+controller:
+    note-create.php
+
+

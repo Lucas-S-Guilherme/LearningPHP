@@ -57,6 +57,12 @@ Editado:
     note-create.php
     note-create.view.php
 
+## Extract a Simple Validator Class
 
+Criar classe Validator.php
+Retirar espaços em branco antes e depois da string passada.
 
+editar note-create com a nova classe.
+
+Função pura: quando houver, sua classe pode ser declaradas como uma classe estática, para que possa ser usada sem ter que declarar sua classe no arquivo a ser usado.
 

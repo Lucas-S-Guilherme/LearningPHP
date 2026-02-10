@@ -36,6 +36,21 @@ Criada a função view() para chamar uma view de maneira mais amigável.
 
 4. Autoloading de Classes (SPL Autoload)
 
+`spl_autoload_register()` função que escuta quando vocẽ tenta instanciar uma classe que ainda não foi carregada.
+
+Com ela o PHP busca e carrega automaticamente um arquivo da classe apenas quando ele é necessário, economizando recursos e limpnaod o arquivo de entrada.
+
+5. Separação de Preocupações (Pasta Core)
+
+Separação do que é infraestrutura do que é aplicação.
+
+Core: classes genéricas que podem ser usadas em qualquer parte da aplicação.
 
 Após as mudanças rodar o servidor com:
 `php -S localhost:8888 -t public`
+
+
+## Namespacing: What, Why, How?
+
+Declarando namespaces.
+

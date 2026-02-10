@@ -6,15 +6,33 @@ $db = new Database($config['database']);
 
 $currentUserId = 1;
 
-$note = $db->query('SELECT * FROM notes where id = :id', [
-    'id' => $_GET['id']
+
+// será refatorado para uma abordagem mais limpa no episódio 33
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $note = $db->query('SELECT * FROM notes WHERE id = :id', [
+        'id' => $_GET['id']
+    ])->findOrFail();
+
+    authorize($note['fk_user_id'] === $currentUserId);
+    
+    $db->query('DELETE FROM notes WHERE id = :id', [
+        'id' => $_GET['id']
+    ]);
+
+    header('location: /notes');
+    exit();
+} else {
+    $note = $db->query('SELECT * FROM notes WHERE id = :id', [
+        'id' => $_GET['id']
     ])->findOrFail();
 
     authorize($note['fk_user_id'] === $currentUserId);
 
-    view("notes/show.view.php", [
+    view('notes/show.view.php', [
         'heading' => 'Note',
-        'Note' => $note
+        'note' => $note
     ]);
+}
 
 ?>

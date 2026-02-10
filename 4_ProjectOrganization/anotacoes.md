@@ -54,3 +54,87 @@ Após as mudanças rodar o servidor com:
 
 Declarando namespaces.
 
+1. O que é Namespacing? (O "O quê")
+
+Imagine que você tem duas pessoas chamadas "Lucas" na sua empresa. Para diferenciá-las, você usa o sobrenome: "Lucas Silva" e "Lucas Oliveira".
+
+    No PHP, um Namespace é como o sobrenome de uma classe.
+
+    Ele agrupa classes relacionadas e evita conflitos. Se você criar uma classe Database e usar uma biblioteca de terceiros que também tem uma classe Database, o PHP saberá qual é qual pelo namespace.
+
+2. Por que usar? (O "Porquê")
+
+Sem namespaces, todas as suas classes vivem no "espaço global". Conforme o projeto cresce:
+
+    Conflitos de nomes tornam-se inevitáveis.
+
+    Organização: Fica difícil saber quais classes são do "Core" do sistema e quais são da "Aplicação".
+
+    Autoloading Moderno: Os namespaces permitem que o seu autoloader encontre arquivos baseando-se na estrutura de pastas (Padrão PSR-4).
+
+3. Como implementar? (O "Como")
+
+A aula mostrou três passos práticos para refatorar seu código:
+A. Declarando o Namespace
+
+No topo de cada arquivo de classe (como o Database.php), você define a sua "família":
+
+~~~PHP
+<?php
+namespace Core; // Agora o nome completo desta classe é Core\Database
+
+class Database { ... }
+~~~
+
+B. Usando a Classe (O comando use)
+
+Quando você estiver em um Controller e precisar da Database, você tem duas opções:
+
+    Caminho completo: $db = new \Core\Database();
+
+    Importação (mais limpa):
+
+        ~~~PHP
+            use Core\Database;
+            $db = new Database(); // O PHP já sabe que é o do Core
+        ~~~
+
+C. O "Escopo Global" (A barra invertida \)
+
+Esta é uma lição técnica vital: Quando você define um namespace no topo do arquivo (ex: namespace Core), o PHP assume que tudo o que você chamar ali dentro pertence ao Core.
+
+    O Problema: Se você tentar usar a classe nativa do PHP PDO, o PHP vai procurar por Core\PDO e dar erro.
+
+    A Solução: Use \PDO (com a barra) para dizer ao PHP: "Ei, procure isso na raiz do PHP, não no meu namespace atual". Ou, melhor ainda, adicione use PDO; no topo.
+
+4. Evolução do Autoloader
+
+A aula mostrou como transformar o autoloader para lidar com esses "sobrenomes":
+
+    Troca de barras: Namespaces usam backslashes (\), mas sistemas de arquivos (como o seu Ubuntu) usam forward slashes (/).
+
+    str_replace: O autoloader agora pega Core\Database, troca a \ por / e resulta no caminho Core/Database.php.
+
+    DIRECTORY_SEPARATOR: Uma boa prática para que seu código funcione tanto no Linux quanto no Windows.
+
+Exemplo do novo Autoloader:
+
+~~~PHP
+spl_autoload_register(function ($class) {
+    // Troca Core\Database por Core/Database
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+
+    require base_path("{$class}.php");
+});
+~~~
+
+Resumo Técnico:
+Conceito	Descrição
+namespace	Define a "pasta lógica" da classe. Deve ser a primeira linha do PHP.
+use	Importa uma classe de outro namespace (como um import em outras linguagens).
+\ (Backslash)	No início de uma classe (ex: \PDO), aponta para o diretório raiz global do PHP.
+
+## Handle Multiple Request Methods From a Controller Action?
+
+O Porquê guia o refatoramento.
+

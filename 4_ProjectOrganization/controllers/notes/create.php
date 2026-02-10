@@ -1,11 +1,10 @@
 <?php
 
-require 'Validator.php';
+$config = require base_path('config.php');
 
-$config = require 'config.php';
 $db = new Database($config['database']);
 
-$heading = 'Create Note';
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    //validação do lado do servidor
@@ -22,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'fk_user_id' => 1
         ]);
     }
+}
 
 //    if (strlen($_POST['body']) === 0) {
 //     $errors['body'] = "A body is required";
@@ -38,6 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //         ]);
 //     }
 
-}
+view("notes/create.view.php", [
+    'heading' => 'Create Note',
+    'errors' => $errors,
+]);
 
 require 'views/notes/create.view.php';

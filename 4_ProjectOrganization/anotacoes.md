@@ -16,3 +16,26 @@ Criado o diretório em /controllers/notes (fazer o mesmo para views)
 
 Seguir essa abordagem para cada recurso da aplicação.
 
+## PHP Autoloading and Extraction
+
+1. Segurança e Diretório
+
+*Problema:* Configurar o projeto para que arquivos de configuração não fiquem acessíveis pelo navegador. Como por exemplo ao tentar e conseguir acessar seusite.com/config.php.
+
+*Solução:* Criar uma pasta /public e definir o *Document Root* do servidor nela. Assim, somente o index.hp e arquivos estáticos (CSS/JS) ficam acessíveis.
+
+2. Gerenciamento de Caminhos (Base Path)
+
+*Problema:* Ao organizar o projeto para diferentes diretórios, os require começam a quebrar.
+
+*Solução:* Usar a constante global BASE_PATH que armazena o caminho absoluto para a raiz do projeto. Ou, declarar uma função simples que aceita um caminho e o anexo ao basePath, tornando as incluções de arquivos muito mais limpas e menos propensas a erros.
+
+3. Melhoria na Renderização de Views
+
+Criada a função view() para chamar uma view de maneira mais amigável.
+
+4. Autoloading de Classes (SPL Autoload)
+
+
+Após as mudanças rodar o servidor com:
+`php -S localhost:8888 -t public`

@@ -7,16 +7,14 @@ $db = App::resolve(Database::class);
 
 $currentUserId = 1;
 
-$note = $db->query('SELECT * FROM notes WHERE id = :id', [
+$note = $db->query('select * from notes where id = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
 
 authorize($note['user_id'] === $currentUserId);
 
-    view('notes/show.view.php', [
-        'heading' => 'Note',
-        'note' => $note
-    ]);
-
-
-?>
+view("notes/edit.view.php", [
+    'heading' => 'Edit Note',
+    'errors' => [],
+    'note' => $note
+]);

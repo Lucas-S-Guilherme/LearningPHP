@@ -1,5 +1,7 @@
 <?php
 
+use Core\Response;
+
 function dd($value) {
     
 echo "<pre>"; //tag <pre> exibe o texto de saído do var_dump pré-formatado

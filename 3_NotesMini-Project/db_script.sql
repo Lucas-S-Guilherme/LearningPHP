@@ -17,9 +17,9 @@ VALUES
 CREATE TABLE notes (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 body TEXT,
-fk_user_id INT NOT NULL,
-FOREIGN KEY (fk_user_id) REFERENCES users(id)
+user_id INT NOT NULL,
+FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-INSERT INTO notes (body, fk_user_id)
+INSERT INTO notes (body, user_id)
 VALUES ('PHP for Bennigers is the Best', 1), ('Javascript is a GODNESS holy gracefull', 2);

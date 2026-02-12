@@ -10,7 +10,7 @@ $note = $db->query('SELECT * FROM notes where id = :id', [
     'id' => $_GET['id']
     ])->findOrFail();
 
-    authorize($note['fk_user_id'] === $currentUserId);
+    authorize($note['user_id'] === $currentUserId);
 
 require "views/note.view.php";
 

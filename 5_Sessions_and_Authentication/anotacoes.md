@@ -1,0 +1,22 @@
+# Sessions and Authentication
+
+## PHP Sessions 101
+
+Pesquisar sobre cookies sobre a sessão do lado do cliente.
+Onde esse arquivo está sendo salvo.
+Como encontar esse arquivo.
+
+No meu pc está em Versão Snap (Padrão do Ubuntu):
+~/snap/firefox/common/.mozilla/firefox/[nome-do-perfil(hashAlearótorio)]/cookies.sqlite
+
+## Register a New User
+
+Rodar o servidor com: 
+
+~~~
+php -S localhost:8888 -t public -d session.save_path="$(pwd)/storage/sessions"
+~~~
+
+Criado storage/sessions para visualizar os arquivos de sessão gerados com o servidor PHP.
+
+## Introduction to Middleware

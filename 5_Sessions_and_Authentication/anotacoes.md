@@ -20,3 +20,9 @@ php -S localhost:8888 -t public -d session.save_path="$(pwd)/storage/sessions"
 Criado storage/sessions para visualizar os arquivos de sessão gerados com o servidor PHP.
 
 ## Introduction to Middleware
+
+O que é um Middleware?
+
+Uma ponte para o núcleo da aplicação, para levar da solicitação atual para o núcleo da aplicação.
+
+

@@ -25,4 +25,11 @@ O que é um Middleware?
 
 Uma ponte para o núcleo da aplicação, para levar da solicitação atual para o núcleo da aplicação.
 
+## Password
+
+Classe PHP que criptografa em hash de senha.
+
+PASSWORD_BCRYPT
+
+## Log In and Log Out
 

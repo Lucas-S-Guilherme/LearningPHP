@@ -2,7 +2,7 @@
 
 namespace Core\Middleware;
 
-class Middlleware
+class Middleware
 {
     public const MAP = [
         'guest' => Guest::class,
@@ -11,7 +11,7 @@ class Middlleware
 
     public static function resolve ($key)
     {
-        if (!key) {
+        if (!$key) {
             return;
         }
 

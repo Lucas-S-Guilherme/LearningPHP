@@ -1,12 +1,27 @@
 # Meu Manual de PHP
 
+# Referência da Linguagem
+
 ## Sintaxe Básica
 
 ## Tipos
 
+### Arrays
+
+Um array em PHP pode ser uma coleção de vários itens diferentes
+
+pode ser declaro com array (); ou na sintaxe curta [].
+
+Elementos de um array pode ser acessado com a sintaxe array[chave].
+
 ## Variáveis
 
 ## Constantes
+
+### Constantes Mágicas
+
+#### __DIR__
+
 
 ## Expressões
 
@@ -70,6 +85,10 @@ $action = $_POST['action'] ?? 'default';
 
 ## Estruturas de Controle
 
+### Require
+
+    Declaração que incluíu um código de um arquivo em outro, tornando o escopo de variáveis do código incluído acessível a partir daquela linha.
+
 ## Funções
 
 ## Clases e Objetos
@@ -127,3 +146,40 @@ echo MyClass::CONST_VALUE;
 ## Opções e parâmetros de contexto
 
 ## Protocolos e empacotadores suportados
+
+# Refeência das Funções
+
+    Afetando o comportamento do PHP
+    Manipulação de Formatos de Áudio
+    Serviços de Autenticação
+    Extensões Específicas para Linha de Comando
+    Extensões de Arquivo e Compressão
+    Extensões para Criptografia
+    Extensões de Banco de Dados
+    Extensões Relacionadas a Data e Horário
+    Extensões Relacionadas a Sistema de Arquivo
+    Linguagem Humana e Suporte a Codificação de Caracteres
+    Processamento e Geração de Imagem
+    Extensões Relacionadas a Correio Eletrônico
+    Extensões Matemáticas
+    Saída de MIME Não-Texto
+    Extensões para Controle de Processo
+
+## Outras Extensões Básicas
+
+### Biblioteca Padrão SPL
+
+#### spl_autoloader_register()
+
+Encarregado de encontrar e carregar classes não importados no código por require.
+
+    Outros Serviços
+    Extensões de Motor de Busca
+    Extensões Específicas para Servidor
+    Extensões de Sessão
+    Processamento de Texto
+    Extensões Relacionadas a Variáveis e Tipos
+    Serviços para Web
+    Extensões Somente para Windows
+    Manipulação de XML
+    Extensões GUI

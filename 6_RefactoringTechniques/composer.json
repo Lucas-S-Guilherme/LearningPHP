@@ -1,0 +1,31 @@
+{
+    "name": "lucasguilherme/6_refactoring-techniques",
+    "authors": [
+        {
+            "name": "Lucas Guilherme",
+            "email": "lucassguilherme159@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "illuminate/collections": "^12.53"
+    },
+    "require-dev": {
+        "pestphp/pest": "^4.4"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

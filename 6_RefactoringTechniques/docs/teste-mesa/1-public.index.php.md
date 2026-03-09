@@ -17,6 +17,7 @@ Linha 3: função nativa do PHP session_start() inicia a sessão de navegação.
     . (ponto) : operador de concatenação de strings. 
     
     '/../' : comando de navegação para voltar um nível de diretório. 
+   
     BASE_PATH retorna o valor = LearningPHP/6_RefactoringTechniques/.
 
 Linha 7: declaração require inclui e torna acessível código em /Core/functions.php.
@@ -48,49 +49,27 @@ Linha 15:
     É feito algo semelhante ao passo anterior, só dessa vez para um arquivo específico 'bootstrap.php'.
     require torna todo código de bootstrap acessível ao index.php.
 
+Linha 17:
+    Cria a variável $router que recebe o valor de uma nova instância da classe Router.
 
-Próximas Linhas do projeto:
+Linha 18: 
+    Função base_path(...) é usada para apontar a raiz do projeto e assim incluir o código de routes.php e passar à $routes como um array.
 
-5. Bootstrap e Rotas
-PHP
-
-require base_path('bootstrap.php');
-
-$router = new \Core\Router();
-$routes = require base_path('routes.php');
-
-    require base_path('bootstrap.php'): Carrega configurações iniciais (como conexão com banco de dados ou injeção de dependência).
-
-    $router: Cria uma variável.
-
-    =: Operador de atribuição.
-
-    new: Palavra-chave para instanciar (criar um objeto) a partir de uma classe.
-
-    \Core\Router(): Chama a classe Router que está dentro do namespace Core. O autoloader (passo 4) entra em ação aqui para carregar o arquivo dessa classe.
-
-    $routes = require ...: Curiosidade do PHP: o comando require pode retornar valores se o arquivo incluído tiver um return. Aqui, ele está carregando as definições de rotas e guardando na variável $routes (embora, neste código específico, a variável $routes não pareça ser usada nas linhas seguintes, o que sugere que o arquivo routes.php talvez popule o $router diretamente ou seja apenas um efeito colateral).
-
-6. Obtendo a URI e o Método
-PHP
-
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+Linha 20:
+    $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
     $_SERVER: Uma superglobal (array) contendo informações do servidor e da execução.
 
     ['REQUEST_URI']: A chave que contém o endereço acessado (ex: /contato?origem=google).
 
-    parse_url( ... ): Função que quebra a URL em partes (host, path, query, etc.).
+    parse_url( ... ): Função nativa PHP que converte e retorna componentes de uma URL (host, path, query, etc.).
 
     ['path']: Acessamos apenas a parte do caminho do array retornado por parse_url.
 
         Por que isso? Se o usuário acessar /contato?id=1, nós queremos rotear apenas para /contato. O parse_url remove o ?id=1.
 
-PHP
-
-$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
-
-Esta linha é muito importante para formulários HTML.
+Linha 21:
+    $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
     $_POST['_method']: Procura por um campo escondido (hidden input) no formulário chamado _method. HTML só suporta nativamente GET e POST. Para fazer um DELETE ou PUT (comum em APIs ou frameworks modernos), costuma-se enviar um POST com um campo extra dizendo "trate isso como DELETE".
 
@@ -100,12 +79,10 @@ Esta linha é muito importante para formulários HTML.
 
         Resumo: "Se alguém enviou um método falso via POST, use ele. Se não, use o método real do navegador".
 
-7. Roteamento Final
-PHP
+Linha 23:
+    $router->route($uri, $method);
 
-$router->route($uri, $method);
-
-    $router: O objeto que criamos no passo 5.
+    $router: O objeto que criado na linha 17.
 
     -> (Seta simples): Operador de acesso a objetos. Serve para acessar propriedades ou métodos dentro de um objeto. Equivalente ao . em linguagens como Java ou JavaScript.
 
@@ -127,21 +104,3 @@ Resumo do Fluxo (Teste de Mesa)
 
     O $router olha sua lista interna, encontra quem cuida de /notas e aciona o código correspondente.
 
-
-
-
-## /views/index.view.php
-
-Linha 1: Declaração require faz a inclusão do escopo de variáveis do arquivo em partials/head.php e retorna essa view.
-Linha 2: Declaração require faz a inclusão do escopo de variáveis do arquivo em partials/nav.php e retorna essa view.
-Linha 3: Declaração require faz a inclusão do escopo de variáveis do arquivo em partials/banner.php e retorna essa view.
-Linha 7: Aberta tag PHP dentro da tag html <p>, operador de Covalescência Nula ?? verifica se $_SESSION há uma chave/valor 'user' e 'email', em caso positivo(true) retorna esses dados, caso negativo retorna 'Guest'. Sempre em um acesso sem login, retornará 'Guest'.
-
-## /views/partials/head.php
-
-Nada de código PHP aqui, somente html.
-
-## /views/partials/nav.php
-
-Linha 12: tag html <a> é aberta e atributo href indica o destino "/".
-Linha 13: atributo class"" comporta abertura de tag PHP, que chama a função urlIs($value.). Essa função atribuí $value ao array $_SERVER na chave 'REQUEST_URI'.

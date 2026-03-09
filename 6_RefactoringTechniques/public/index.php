@@ -1,6 +1,7 @@
 <?php
 
 use Core\Session;
+use Core\ValidationException;
 
 session_start();
 
@@ -24,5 +25,14 @@ $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->route($uri, $method);
 // acessa a função route do objeto $router, passando os parâmetros $uri e $method, que são a URI da requisição e o método HTTP utilizado. A função route é responsável por encontrar a rota correspondente e executar o controlador associado a essa rota.
+
+try {
+    $router->route($uri, $method);
+} catch (ValidationException $exception) {
+    Session::flash('errors', $exception->errors);
+    Session::flash('old', $exception->old);
+
+    return redirect($router->previousUrl());
+}
 
 Session::unflash();
